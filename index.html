@@ -477,7 +477,11 @@
                 const errorMessage = document.getElementById('errorMessage');
                 
                 // Format YouTube bot detection errors more nicely
-                if (message.includes("Sign in to confirm you're not a bot")) {
+                if (message.includes("Sign in to confirm you're not a bot") || 
+                    message.includes("Unable to fetch GVS PO Token") ||
+                    message.includes("Missing required Visitor Data") ||
+                    message.includes("Operation not permitted") ||
+                    message.includes("Could not extract video information")) {
                     errorMessage.innerHTML = `
                         <div style="text-align: left;">
                             <strong>🤖 YouTube检测到自动化访问</strong><br><br>
@@ -486,19 +490,20 @@
                             <strong>💡 立即可用的方法：</strong><br>
                             • 等待5-10分钟后重新尝试<br>
                             • 尝试使用不同的YouTube视频<br>
-                            • 使用VPN或更换网络<br><br>
+                            • 使用VPN或更换网络<br>
+                            • 在新的浏览器标签页中打开YouTube并登录<br><br>
                             
-                            <strong>🔧 进阶解决方案：</strong><br>
-                            • 确保在浏览器中已登录YouTube<br>
-                            • 使用浏览器扩展下载<br>
-                            • 访问在线YouTube下载器<br><br>
+                            <strong>🔧 推荐的替代下载器：</strong><br>
+                            • <a href="https://y2mate.com" target="_blank" style="color: #ff0000; text-decoration: underline;">y2mate.com</a> - 免费在线下载器<br>
+                            • <a href="https://savefrom.net" target="_blank" style="color: #ff0000; text-decoration: underline;">savefrom.net</a> - 支持多种格式<br>
+                            • <a href="https://yt1s.com" target="_blank" style="color: #ff0000; text-decoration: underline;">yt1s.com</a> - 快速下载<br>
+                            • <a href="https://ytdl-org.github.io/youtube-dl/" target="_blank" style="color: #ff0000; text-decoration: underline;">youtube-dl官方工具</a><br><br>
                             
-                            <strong>📋 推荐的在线下载器：</strong><br>
-                            • <a href="https://y2mate.com" target="_blank" style="color: #ff6b6b;">y2mate.com</a><br>
-                            • <a href="https://savefrom.net" target="_blank" style="color: #ff6b6b;">savefrom.net</a><br>
-                            • <a href="https://yt1s.com" target="_blank" style="color: #ff6b6b;">yt1s.com</a><br><br>
+                            <strong>💡 小贴士：</strong><br>
+                            如果您急需下载这个视频，请点击上面的链接使用替代下载器。<br>
+                            我们的服务通常会在几分钟内自动恢复正常。<br><br>
                             
-                            <em>YouTube的反机器人检测通常会在几分钟到几小时内自动恢复。</em>
+                            <em style="color: #888;">YouTube的反机器人检测是临时的，通常在5-30分钟内会自动恢复。</em>
                         </div>
                     `;
                 } else {

@@ -9,6 +9,8 @@ import re
 import json
 import logging
 import tempfile
+import time
+import random
 from datetime import datetime
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
@@ -188,6 +190,13 @@ class YouTubeVideoDownloader:
             for i, config in enumerate(configs_to_try):
                 try:
                     logger.info(f"Trying configuration {i+1}")
+                    
+                    # Add random delay between attempts to avoid rapid requests
+                    if i > 0:
+                        delay = random.uniform(1, 3)
+                        logger.info(f"Adding {delay:.1f}s delay before next attempt")
+                        time.sleep(delay)
+                    
                     with yt_dlp.YoutubeDL(config) as ydl:
                         info = ydl.extract_info(url, download=False)
                         if info:
@@ -201,18 +210,16 @@ class YouTubeVideoDownloader:
             if not info:
                 # Provide more helpful error message
                 if "Sign in to confirm you're not a bot" in str(last_error):
-                    raise ValueError(
-                        "YouTube detected automated access. This is a temporary issue. "
-                        "Please try again later, or try these solutions:\n\n"
-                        "1. Wait a few minutes and try again\n"
-                        "2. Try a different video URL\n"
-                        "3. Use a VPN from a different location\n"
-                        "4. Try downloading directly from YouTube and use browser extensions\n\n"
-                        "For developers: Consider implementing cookie authentication. "
-                        f"Original error: {last_error}"
-                    )
+                    # Simplified, user-friendly error message that will trigger frontend special handling
+                    raise ValueError("Sign in to confirm you're not a bot")
+                elif "Unable to fetch GVS PO Token" in str(last_error):
+                    raise ValueError("Sign in to confirm you're not a bot")
+                elif "Missing required Visitor Data" in str(last_error):
+                    raise ValueError("Sign in to confirm you're not a bot")
+                elif "Operation not permitted" in str(last_error) and "Cookies" in str(last_error):
+                    raise ValueError("Sign in to confirm you're not a bot")
                 else:
-                    raise ValueError(f"Could not extract video information: {last_error}")
+                    raise ValueError(f"Failed to extract video information. Please try a different video or try again later. ({str(last_error)[:100]}...)")
                 
             if 'entries' in info:
                 video_info = info['entries'][0] if info['entries'] else None
