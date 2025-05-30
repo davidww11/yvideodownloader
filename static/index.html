@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free YouTube Video Downloader - Download YouTube videos instantly and easily. Save YouTube videos in high quality for free. Fast, secure, and no registration required.">
+    <meta name="keywords" content="youtube video downloader, download youtube video, save youtube video, youtube video download, free youtube downloader, youtube to mp4">
+    <meta name="author" content="YouTube Video Downloader">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="YouTube Video Downloader - Download YouTube Videos Free">
+    <meta property="og:description" content="Download YouTube videos instantly and for free. High quality video downloads with no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pullvideo.com">
+    <meta property="og:image" content="/images/youtube-downloader-preview.jpg">
+    
+    <!-- Youtube Card Tags -->
+    <meta name="youtube:card" content="summary_large_image">
+    <meta name="youtube:title" content="YouTube Video Downloader - Download YouTube Videos Free">
+    <meta name="youtube:description" content="Download YouTube videos instantly and for free. High quality video downloads with no registration required.">
+    <meta name="youtube:image" content="/images/youtube-downloader-preview.jpg">
+    
+    <title>YouTube Video Downloader - Download YouTube Videos Free | Fast & Easy</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://www.pullvideo.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "YouTube Video Downloader",
+        "description": "Free YouTube Video Downloader - Download YouTube videos instantly and easily",
+        "url": "https://www.pullvideo.com",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>YouTube Video Downloader</h1>
+                <p class="tagline">Download YouTube Videos Free & Fast</p>
+            </div>
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#downloader">Downloader</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-to">How To Use</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">YouTube Video Downloader</h1>
+                <!--
+                <p class="hero-subtitle">Download YouTube videos instantly for free</p>
+                <p class="hero-description">
+                    Save your favorite YouTube videos in high quality with our free YouTube video downloader. 
+                    No registration required, no watermarks, and completely free to use. 
+                    Simply paste the YouTube video URL and download instantly.
+                </p>
+                -->
+            </div>
+        </section>
+
+        <section id="downloader" class="downloader-section">
+            <div class="container">
+                <h2>Free YouTube Video Downloader</h2>
+                <div class="downloader-wrapper">
+                    <div class="downloader-container">
+                        <div class="input-section">
+                            <div class="input-wrapper">
+                                <input type="url" 
+                                       id="youtubeUrl" 
+                                       placeholder="Paste YouTube video URL here (e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ)" 
+                                       class="url-input"
+                                       aria-label="YouTube video URL">
+                                <div class="format-selector">
+                                    <label for="format">Format:</label>
+                                    <select id="format" class="format-select">
+                                        <option value="mp4">MP4 (Video)</option>
+                                        <option value="mp3">MP3 (Audio)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="downloadBtn" class="download-btn" type="button">
+                                <span class="btn-text">Download Video</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <span class="spinner"></span>
+                                    Processing...
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <div id="result-section" class="result-section" style="display: none;">
+                            <div class="video-info">
+                                <div class="video-thumbnail">
+                                    <img id="videoThumbnail" src="" alt="Video thumbnail" style="display: none;">
+                                </div>
+                                <div class="video-details">
+                                    <h3 id="videoTitle">Video Title</h3>
+                                    <p id="videoAuthor">@channel</p>
+                                    <p id="videoDuration">Duration: --:--</p>
+                                </div>
+                            </div>
+                            
+                            <div class="download-options">
+                                <h4>Choose Quality:</h4>
+                                <div id="qualityOptions" class="quality-grid">
+                                    <!-- Quality options will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="error-section" class="error-section" style="display: none;">
+                            <div class="error-icon">⚠️</div>
+                            <h3>Error</h3>
+                            <p id="errorMessage">Something went wrong. Please try again.</p>
+                            <button id="retryBtn" class="retry-btn">Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>Why Choose Our YouTube Video Downloader?</h2>
+                <div class="features-grid">
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <span aria-hidden="true">⚡</span>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Download YouTube videos in seconds with our optimized servers and fast processing technology.</p>
+                    </article>
+                    
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <span aria-hidden="true">🆓</span>
+                        </div>
+                        <h3>100% Free</h3>
+                        <p>Completely free YouTube video downloader with no hidden fees, subscriptions, or registration required.</p>
+                    </article>
+                    
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <span aria-hidden="true">📱</span>
+                        </div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Works perfectly on all devices - desktop, tablet, and mobile. Download YouTube videos anywhere, anytime.</p>
+                    </article>
+                    
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <span aria-hidden="true">🔒</span>
+                        </div>
+                        <h3>Safe & Secure</h3>
+                        <p>Your privacy is protected. We don't store your videos or personal information. Completely secure downloads.</p>
+                    </article>
+                    
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <span aria-hidden="true">🎥</span>
+                        </div>
+                        <h3>High Quality</h3>
+                        <p>Download YouTube videos in original quality including 4K, 1080p HD videos. Multiple format options available.</p>
+                    </article>
+                    
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <span aria-hidden="true">🌐</span>
+                        </div>
+                        <h3>No Software Needed</h3>
+                        <p>Browser-based YouTube video downloader. No need to install any software or browser extensions.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-to" class="how-to-section">
+            <div class="container">
+                <h2>How to Download YouTube Videos</h2>
+                <div class="steps-grid">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Copy YouTube Video URL</h3>
+                        <p>Go to YouTube, find the video you want to download, and copy the video URL from your browser's address bar.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Paste URL</h3>
+                        <p>Paste the YouTube video URL into the downloader tool above and click the download button.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Download Video</h3>
+                        <p>Choose your preferred video quality and format, then click download to save the YouTube video to your device.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Is this YouTube video downloader free?</h3>
+                        <p>Yes, our YouTube video downloader is completely free to use with no hidden costs or subscription fees.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Do I need to create an account?</h3>
+                        <p>No registration or account creation is required. Simply paste the YouTube video URL and download instantly.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What video formats are supported?</h3>
+                        <p>We support multiple video formats including MP4, which is compatible with all devices and platforms.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Is it safe to use?</h3>
+                        <p>Yes, our service is completely safe and secure. We don't store your videos or collect personal information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>YouTube Video Downloader</h3>
+                    <p>The fastest and most reliable way to download YouTube videos for free. Available worldwide.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>Email: </p>
+                    <p>Business Hours: 24/7 Online Support</p>
+                    <p>Response Time: Within 24 hours</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#downloader">Video Downloader</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-to">How to Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <p>This tool is for downloading videos you own or have permission to download. Please respect copyright laws and YouTube's terms of service.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 YouTube Video Downloader. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">DMCA</a></p>
+            </div>
+        </div>
+    </footer>
+    <div style="display: none;">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F6XX9E5G7"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5F6XX9E5G7');
+        </script>
+    </div>
+    <script>
+        class YouTubeVideoDownloader {
+            constructor() {
+                this.initializeElements();
+                this.bindEvents();
+            }
+
+            initializeElements() {
+                this.urlInput = document.getElementById('youtubeUrl');
+                this.formatSelect = document.getElementById('format');
+                this.downloadBtn = document.getElementById('downloadBtn');
+                this.btnText = this.downloadBtn.querySelector('.btn-text');
+                this.btnLoading = this.downloadBtn.querySelector('.btn-loading');
+                this.resultSection = document.getElementById('result-section');
+                this.errorSection = document.getElementById('error-section');
+                this.retryBtn = document.getElementById('retryBtn');
+            }
+
+            bindEvents() {
+                this.downloadBtn.addEventListener('click', () => this.handleDownload());
+                this.retryBtn.addEventListener('click', () => this.resetForm());
+                this.urlInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.handleDownload();
+                });
+                this.urlInput.addEventListener('input', () => this.validateUrl());
+            }
+
+            validateUrl() {
+                const url = this.urlInput.value.trim();
+                const isValid = this.isValidYouTubeUrl(url);
+                this.downloadBtn.disabled = !isValid || !url;
+                return isValid;
+            }
+
+            isValidYouTubeUrl(url) {
+                const patterns = [
+                    /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/.+/,
+                    /^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+/,
+                    /^https?:\/\/youtu\.be\/[\w-]+/,
+                    /^https?:\/\/(www\.)?youtube\.com\/embed\/[\w-]+/,
+                    /^https?:\/\/(www\.)?youtube\.com\/v\/[\w-]+/,
+                    /^https?:\/\/m\.youtube\.com\/watch\?v=[\w-]+/
+                ];
+                return patterns.some(pattern => pattern.test(url));
+            }
+
+            async handleDownload() {
+                if (!this.validateUrl()) {
+                    this.showError('Please enter a valid YouTube video URL');
+                    return;
+                }
+
+                const url = this.urlInput.value.trim();
+                const format = this.formatSelect.value;
+
+                this.setLoading(true);
+                this.hideError();
+                this.hideResult();
+
+                try {
+                    const response = await fetch('/api/download', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ url, format })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Download failed');
+                    }
+
+                    this.showResult(data);
+                } catch (error) {
+                    console.error('Download error:', error);
+                    this.showError(error.message || 'Failed to download video. Please try again.');
+                } finally {
+                    this.setLoading(false);
+                }
+            }
+
+            setLoading(loading) {
+                this.downloadBtn.disabled = loading;
+                this.btnText.style.display = loading ? 'none' : 'inline';
+                this.btnLoading.style.display = loading ? 'flex' : 'none';
+            }
+
+            showResult(data) {
+                const videoTitle = document.getElementById('videoTitle');
+                const videoAuthor = document.getElementById('videoAuthor');
+                const videoDuration = document.getElementById('videoDuration');
+                const videoThumbnail = document.getElementById('videoThumbnail');
+                const qualityOptions = document.getElementById('qualityOptions');
+
+                // Update video info
+                videoTitle.textContent = data.title || 'YouTube Video';
+                videoAuthor.textContent = data.author || '@unknown';
+                videoDuration.textContent = `Duration: ${data.duration || 'Unknown'}`;
+
+                // Update thumbnail
+                if (data.thumbnail) {
+                    videoThumbnail.src = data.thumbnail;
+                    videoThumbnail.style.display = 'block';
+                } else {
+                    videoThumbnail.style.display = 'none';
+                }
+
+                // Clear and populate quality options
+                qualityOptions.innerHTML = '';
+
+                if (data.formats && data.formats.length > 0) {
+                    data.formats.forEach(format => {
+                        const optionDiv = document.createElement('div');
+                        optionDiv.className = 'quality-option';
+                        
+                        optionDiv.innerHTML = `
+                            <div class="quality-info">
+                                <div class="quality-label">${format.quality || 'Standard Quality'}</div>
+                                <div class="quality-details">${format.ext?.toUpperCase() || 'MP4'} • ${format.filesize || 'Unknown size'}</div>
+                            </div>
+                            <button class="quality-download-btn" onclick="window.downloadFile('${format.url}', '${format.filename || 'video'}')">
+                                Download
+                            </button>
+                        `;
+                        
+                        qualityOptions.appendChild(optionDiv);
+                    });
+                } else {
+                    // Fallback single download option
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'quality-option';
+                    
+                    optionDiv.innerHTML = `
+                        <div class="quality-info">
+                            <div class="quality-label">Download</div>
+                            <div class="quality-details">${data.format?.toUpperCase() || 'MP4'}</div>
+                        </div>
+                        <button class="quality-download-btn" onclick="window.downloadFile('${data.download_url}', '${data.filename || 'video'}')">
+                            Download
+                        </button>
+                    `;
+                    
+                    qualityOptions.appendChild(optionDiv);
+                }
+
+                this.resultSection.style.display = 'block';
+            }
+
+            showError(message) {
+                const errorMessage = document.getElementById('errorMessage');
+                
+                // Format YouTube bot detection errors more nicely
+                if (message.includes("Sign in to confirm you're not a bot")) {
+                    errorMessage.innerHTML = `
+                        <div style="text-align: left;">
+                            <strong>🤖 YouTube检测到自动化访问</strong><br><br>
+                            这是一个临时问题，请尝试以下解决方案：<br><br>
+                            
+                            <strong>💡 立即可用的方法：</strong><br>
+                            • 等待5-10分钟后重新尝试<br>
+                            • 尝试使用不同的YouTube视频<br>
+                            • 使用VPN或更换网络<br><br>
+                            
+                            <strong>🔧 进阶解决方案：</strong><br>
+                            • 确保在浏览器中已登录YouTube<br>
+                            • 使用浏览器扩展下载<br>
+                            • 访问在线YouTube下载器<br><br>
+                            
+                            <strong>📋 推荐的在线下载器：</strong><br>
+                            • <a href="https://y2mate.com" target="_blank" style="color: #ff6b6b;">y2mate.com</a><br>
+                            • <a href="https://savefrom.net" target="_blank" style="color: #ff6b6b;">savefrom.net</a><br>
+                            • <a href="https://yt1s.com" target="_blank" style="color: #ff6b6b;">yt1s.com</a><br><br>
+                            
+                            <em>YouTube的反机器人检测通常会在几分钟到几小时内自动恢复。</em>
+                        </div>
+                    `;
+                } else {
+                    errorMessage.textContent = message;
+                }
+                
+                this.errorSection.style.display = 'block';
+                this.resultSection.style.display = 'none';
+            }
+
+            hideError() {
+                this.errorSection.style.display = 'none';
+            }
+
+            hideResult() {
+                this.resultSection.style.display = 'none';
+            }
+
+            resetForm() {
+                this.urlInput.value = '';
+                this.hideError();
+                this.hideResult();
+                this.downloadBtn.disabled = true;
+            }
+        }
+
+        // Enhanced download function with mobile optimization
+        window.downloadFile = function(url, filename) {
+            // 自动化下载逻辑：优先fetch+blob，失败则跳转
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.blob();
+                })
+                .then(blob => {
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename || 'video.mp4';
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    setTimeout(() => window.URL.revokeObjectURL(blobUrl), 100);
+                })
+                .catch(() => {
+                    // fetch+blob失败，直接跳转到视频链接
+                    window.location.href = url;
+                });
+        };
+
+        // Initialize the downloader when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new YouTubeVideoDownloader();
+        });
+    </script>
+</body>
+</html> 
